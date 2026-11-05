@@ -1,0 +1,330 @@
+/* Library theme for the translation app: warm paper, ink green and brass, a book typeface.
+   Layered after ui.css; IDs, structure and behaviour are unchanged. Local font only. */
+@font-face{font-family:"Frank Ruhl Libre";src:url("/fonts/frank-ruhl-libre.ttf") format("truetype");font-weight:300 900;font-display:swap}
+:root{
+  --bg:#f5eee0;--bg-2:#efe5d1;--surface:#fffdf8;--surface-2:#faf5ea;--surface-3:#f3ebda;
+  --border:#e6dac3;--border-2:#d6c6a6;--ink:#1f2823;--ink-2:#3b443d;--muted:#6f685a;
+  --green-950:#11241e;--green-900:#173029;--green-800:#1f3d34;--green-700:#2a5144;--green-600:#3a6b59;--green-100:#e5eee6;--green-50:#f0f5ef;
+  --clay:#b0532f;--clay-700:#93401f;--clay-100:#f7e5da;--gold:#c8963e;--gold-300:#e8c98a;--gold-100:#f8ecd2;
+  --ok:#2f6b45;--ok-100:#e3efe5;--warn-100:#fbefd5;--danger:#a33a2e;--danger-100:#f8e2dd;--focus:#c26a2e;
+  --display:"Frank Ruhl Libre","David",Georgia,"Times New Roman",serif;
+  --sans:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;
+  --r-sm:8px;--r:12px;--r-lg:18px;--r-xl:24px;
+  --sh-1:0 1px 2px #3c28140f;--sh-2:0 1px 2px #3c28140d,0 10px 28px -14px #3c281445;--sh-3:0 2px 6px #3c281414,0 28px 60px -24px #3c281466;
+  /* The older names used by ui.css follow the theme. */
+  --teal:var(--green-800);--line:var(--border);
+  color:var(--ink);background:var(--bg);font-family:var(--sans);-webkit-font-smoothing:antialiased
+}
+body{background:radial-gradient(1200px 500px at 85% -10%,#fbe9c766,transparent 70%),radial-gradient(#8a6a3a0a 1px,transparent 1.3px) 0 0/6px 6px,var(--bg);overflow-x:clip}
+:focus-visible,button:focus-visible,a:focus-visible,summary:focus-visible,[role=button]:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--green-600)!important;box-shadow:0 0 0 4px #3a6b5926}
+
+/* Header: a full-width ink-green bar with the cat-and-book mark. */
+.app-header{position:sticky;top:0;z-index:50;padding:10px 24px;color:#f1e7cf;background:linear-gradient(#1b3830,#152d26);box-shadow:0 0 0 100vmax #173029,0 1px 0 100vmax #c8963e66;clip-path:inset(0 -100vmax -12px)}
+.brand{gap:12px;color:var(--gold-300);font:650 1.45rem/1 var(--display);letter-spacing:0}
+.brand-mark{width:auto;height:auto;background:none;border-radius:0}
+.brand-mark .brand-logo{width:54px;height:41px;filter:drop-shadow(0 3px 4px #0007);transition:transform .25s cubic-bezier(.3,1.6,.5,1)}
+.brand:hover .brand-logo{transform:translateY(-2px) rotate(-3deg)}
+.header-actions{gap:6px}
+.app-header .quiet-button{min-height:38px;padding:6px 13px;border:1px solid #ffffff24;border-radius:999px;background:#ffffff0d;color:#efe5cc;font-size:.82rem;font-weight:600}
+.app-header .quiet-button:hover{background:#ffffff1f;border-color:#ffffff40;color:#fff}
+.app-header .library-header-button,.app-header .help-header-link,.app-header #language-button,.app-header .sign-in-button{color:#efe5cc}
+.app-header .key-indicator{color:#8d9886;padding:6px 10px}.app-header .key-indicator.has-key{color:#a7d58d}.app-header .key-indicator.saved{color:var(--gold-300)}
+.app-header .key-badge{border-color:#173029;background:var(--gold-300)}
+.connection-dot{width:8px;height:8px;background:#7c8576}.connection-dot.connected{background:#8fd17a;box-shadow:0 0 0 3px #8fd17a33}
+.account-button{width:38px;height:38px;border:0;background:linear-gradient(#f0d79f,#d9b268);color:var(--green-950)}
+.account-button:hover{background:linear-gradient(#f4dca8,#e0bb73)}
+.account-menu{border-radius:var(--r);border-color:var(--border);box-shadow:var(--sh-3);padding:16px}
+.update-notice{max-width:960px;border-radius:var(--r);background:linear-gradient(90deg,var(--gold-100),#fbf3e2);border-color:#ecd6a6;color:#5c4415;margin-top:16px}
+
+/* Type and page rhythm. */
+.workspace{max-width:900px;padding-top:28px}
+.hero{margin-bottom:24px}
+.eyebrow{color:var(--clay);font-weight:650;letter-spacing:.02em}
+html[lang=en] .eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:11px}
+.hero h1,.processing-panel h1,.result-heading h1,.library-heading h1{font-family:var(--display);font-weight:650;letter-spacing:-.01em;color:var(--green-900)}
+.hero h1{font-size:clamp(34px,4.2vw,50px)}
+.hero h1 span{color:var(--clay)}
+.hero p{font-size:15px;color:var(--muted)}
+
+/* Cards. */
+.translate-card,.result-card,.library-card,.review-panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:var(--sh-2)}
+.translate-card{padding:22px}
+.drop-zone{border:2px dashed #cdb98f;border-radius:var(--r);background:radial-gradient(400px 200px at 50% 0,#fff8e6,transparent),var(--surface-2);padding:22px 20px}
+.drop-zone:hover,.drop-zone.dragging{border-color:var(--green-600);background:radial-gradient(400px 200px at 50% 0,#fffaf0,transparent),var(--green-50)}
+.drop-zone h2{font-family:var(--display);font-size:20px;color:var(--green-900)}
+.file-illustration{background:var(--gold-100);color:var(--clay);border-radius:var(--r)}
+.choose-file{border:0;border-radius:var(--r-sm);background:var(--green-800);color:#fdf8ec;box-shadow:0 6px 14px -8px #11241e80}
+.selected-file strong{font-family:var(--display);font-size:18px;color:var(--green-900)}
+.selected-file-icon{background:var(--gold-100);color:var(--clay);border-radius:var(--r-sm)}
+.change-file{color:var(--green-700);border-color:#2a514466}
+
+/* Option summary reads as chips. */
+.options summary{min-height:44px}
+.option-summary{gap:6px}
+.option-summary>span:not(.separator){padding:3px 11px;border-radius:999px;background:var(--surface-3);border:1px solid var(--border);color:var(--ink-2);font-weight:650}
+.option-summary .separator{display:none}
+.options-label{color:var(--green-800);font-weight:700;font-size:13px}
+.settings-fields{border-top-color:var(--border)}
+.field label,.role-block h3,.key-fields label{color:var(--ink-2);font-weight:650}
+.field input,.field select,.field textarea,.role-fields select,.role-fields input,.key-fields input,.decision-option input,#resume-key-fields input,.review-toolbar select{border:1px solid var(--border-2);border-radius:var(--r-sm);background:var(--surface);box-shadow:inset 0 1px 2px #3c28140a;transition:border-color .15s,box-shadow .15s}
+.field input:hover,.field select:hover,.field textarea:hover{border-color:#bfa97f}
+.model-settings{border-top-color:var(--border)}
+.preview-card{background:var(--green-50);border-color:#c9dbc9;border-radius:var(--r)}
+
+/* Buttons. */
+.primary-button,.secondary-button{border-radius:var(--r-sm);font-weight:650;transition:background .15s,transform .08s,box-shadow .15s}
+.primary-button{background:var(--green-800);color:#fdf8ec;box-shadow:0 1px 0 #ffffff24 inset,0 1px 2px #11241e33,0 6px 14px -8px #11241e80}
+.primary-button:hover:not(:disabled){background:var(--green-700)}
+.primary-button:active:not(:disabled),.secondary-button:active:not(:disabled){transform:translateY(1px)}
+.primary-button:disabled{background:#d8d0bf;color:#7d7564;box-shadow:none;opacity:1}
+.secondary-button{background:var(--surface);color:var(--green-800);border-color:var(--border-2);box-shadow:var(--sh-1)}
+.secondary-button:hover{background:var(--green-50);border-color:var(--green-600)}
+.translate-button{min-height:52px;border-radius:var(--r);font-size:15px}
+.text-button{color:var(--green-700);font-weight:600}
+.text-button:hover{color:var(--green-900);background:#1f3d340d}
+.message,.result-notice{border-radius:var(--r-sm);background:var(--danger-100);border-color:#eac0b8;color:#6e241b}
+
+/* Processing, result and review: calm cards (the bindery arrives in stage 4). */
+.processing-percentage{font:600 26px/1.1 var(--display);color:var(--green-800);font-variant-numeric:tabular-nums}
+.processing-panel progress{height:10px;border-radius:999px;width:min(420px,90%)}
+.processing-panel progress::-webkit-progress-bar{background:var(--surface-3);border-radius:999px}
+.processing-panel progress::-webkit-progress-value{background:linear-gradient(90deg,var(--green-600),var(--green-800));border-radius:999px}
+.result-symbol{background:radial-gradient(circle at 35% 30%,#4f9a6a,#2f6b45);border:0;color:#fff;box-shadow:0 0 0 4px var(--ok-100)}
+.result-file strong{font-family:var(--display);font-size:18px;color:var(--green-900)}
+.result-file-icon{background:var(--green-800);color:#fdf8ec;border-radius:var(--r-sm)}
+.draft-badge{border:1px dashed #d89b7f;background:var(--clay-100);color:var(--clay-700);border-radius:999px;font-weight:800;letter-spacing:.04em}
+.result-secondary{border-top-color:var(--border)}
+.review-toolbar h2{font-family:var(--display);font-size:22px;color:var(--green-900)}
+.source-copy,#review-target{font-family:var(--display);font-size:18px;border-color:var(--border);border-radius:var(--r-sm)}
+.source-copy{background:var(--surface-2)}
+.review-findings{color:#6b4a1c}
+.decision-box{border-radius:var(--r);border-color:#ead39f;background:linear-gradient(var(--surface),#fffaf0);box-shadow:var(--sh-1)}
+.decision-box h2{font-family:var(--display);font-size:19px;color:var(--green-900)}
+
+/* Library (the shelf arrives in stage 2). */
+.library-heading h1:focus{outline:none}
+.library-tabs{border-radius:999px;border-color:var(--border);background:var(--surface-3)}
+.library-tab{border-radius:999px}
+.library-tab[aria-selected=true]{background:var(--surface);color:var(--green-900);box-shadow:var(--sh-1),0 0 0 1px var(--border)}
+.library-kind{border-radius:999px;color:#f8eed6;background:#1f2823;border:0}
+.library-kind[data-kind=epub]{color:#f8eed6;background:var(--green-700)}
+.library-entry:hover{background:var(--surface-2)}
+.library-entry strong{font-family:var(--display);font-size:17px;color:var(--green-900)}
+.drive-badge{border-radius:999px}
+
+/* Dialogs and footer. */
+dialog{border-radius:var(--r-lg);border-color:var(--border);background:var(--surface);box-shadow:var(--sh-3)}
+dialog::backdrop{background:#0f1f1aa6;backdrop-filter:blur(3px)}
+.dialog-heading h2{font-family:var(--display);color:var(--green-900)}
+.app-footer{max-width:none;margin-top:32px;padding:16px 40px;align-items:center;flex-wrap:wrap;color:var(--ink-2);font-size:12px;background:linear-gradient(var(--bg-2),#e8dcc4);border-top:1px solid var(--border-2)}
+.app-footer a{border-bottom-color:#2a514466}
+.cat-button{font-size:12px}
+
+@media(max-width:650px){
+  .app-header{padding:8px 14px}
+  .brand{font-size:1.15rem}
+  .brand-mark .brand-logo{width:44px;height:33px}
+  .app-header .quiet-button{min-height:34px;padding:5px 9px;font-size:.76rem}
+  .app-footer{padding:16px}
+}
+
+/* ---- Stage 2: the library as a shelf. Matte cloth books, printed details, a flat 2D turn. ---- */
+.workspace:has(#library-panel:not([hidden])){max-width:1180px}
+#library-panel .library-card{max-width:none;padding:18px}
+.library-tools{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px;margin-top:16px}
+.library-search{position:relative;display:block;flex:1 1 240px;max-width:340px}
+.library-search svg{position:absolute;inset-inline-start:13px;top:50%;width:17px;height:17px;transform:translateY(-50%);color:var(--muted)}
+.library-search input,.library-sort select{width:100%;min-height:40px;padding:8px 14px;padding-inline-start:38px;border:1px solid var(--border-2);border-radius:999px;background:var(--surface);color:var(--ink)}
+.library-sort select{padding-inline-start:14px;min-width:160px}
+.library-view{display:flex;gap:2px;padding:3px;border-radius:999px;background:var(--surface-3);border:1px solid var(--border)}
+.library-view button{min-height:34px;padding:5px 14px;border:0;border-radius:999px;background:transparent;font-weight:650;font-size:13px;color:var(--ink-2)}
+.library-view button[aria-pressed=true]{background:var(--surface);color:var(--green-900);box-shadow:var(--sh-1),0 0 0 1px var(--border)}
+
+.library-shelf{position:relative;padding:20px 20px 6px;border-radius:var(--r-lg);background:repeating-linear-gradient(90deg,#ffffff05 0 1px,transparent 1px 22px),#3a2717;box-shadow:inset 0 10px 18px -12px #000c,inset 0 0 0 1px #ffffff0d}
+.shelf-books{display:flex;align-items:flex-end;gap:5px;min-height:186px;padding:0 6px}
+.shelf-plank{height:14px;margin:0 -20px 18px;background:#7a5333;border-top:3px solid #9b7049;box-shadow:0 6px 8px -6px #000a}
+.lib-spine{position:relative;flex:none;width:var(--w);height:var(--h);padding:0;border:0;background:none;cursor:pointer;transition:transform .18s ease}
+.spine-face{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:20px 0 9px;border-radius:2px 2px 1px 1px;color:#f1e4c6;
+  background:repeating-linear-gradient(45deg,#ffffff08 0 1px,transparent 1px 4px),var(--c);border:1px solid #00000047;transform-origin:center;transition:transform .13s ease-in .15s}
+.spine-face:before,.spine-face:after{content:"";position:absolute;inset-inline:5px;height:5px;border-top:2px solid #d4b26c;border-bottom:1px solid #d4b26c}
+.spine-face:before{top:8px}.spine-face:after{bottom:26px}
+.spine-title{flex:1;writing-mode:vertical-rl;text-orientation:mixed;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;max-height:calc(var(--h) - 62px);padding:6px 0;font:600 13px/1 var(--display)}
+.spine-title.plate{padding:8px 3px;margin:4px 0;background:#efe3c6;color:#2b241a;border-radius:1px;max-height:calc(var(--h) - 70px)}
+.spine-kind{font:700 9px/1 var(--sans);letter-spacing:.08em;opacity:.85}
+.spine-cloud{position:absolute;top:-9px;inset-inline-end:-5px;width:18px;height:11px;background:#fffbef;clip-path:polygon(20% 40%,35% 15%,60% 10%,75% 35%,95% 45%,100% 80%,90% 100%,10% 100%,0 75%)}
+.spine-ribbon{position:absolute;bottom:-14px;inset-inline-start:40%;width:7px;height:22px;background:var(--clay);clip-path:polygon(0 0,100% 0,100% 100%,50% 78%,0 100%)}
+.spine-flag{position:absolute;top:30px;inset-inline-start:-8px;width:18px;height:18px;border-radius:50%;display:grid;place-items:center;background:#f0a34a;color:var(--ink);font:800 11px/1 var(--sans);font-style:normal}
+.lib-spine.drive-only .spine-face{opacity:.72;border-style:dashed;border-color:#f1e4c699}
+.cover-face{position:absolute;bottom:0;left:50%;z-index:2;width:var(--cw);height:var(--h);margin-left:calc(var(--cw) / -2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;padding:12px 10px;
+  color:#f1e4c6;text-align:center;border-radius:2px 6px 6px 2px;background:repeating-linear-gradient(45deg,#ffffff08 0 1px,transparent 1px 4px),var(--c);border:1px solid #00000047;outline:1px solid #d4b26c99;outline-offset:-7px;
+  transform:scaleX(0);transform-origin:center;transition:transform .15s ease-out}
+.cover-kind{font:700 9px/1 var(--sans);letter-spacing:.1em;padding:3px 7px;border-radius:999px;background:#0000003a}
+.cover-plate{max-width:100%;padding:7px 8px;background:#efe3c6;color:#2b241a;border-radius:1px;font:600 13px/1.25 var(--display);overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.cover-meta{font:600 10px/1.35 var(--sans);opacity:.9;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.cover-progress{width:80%;height:5px;border-radius:999px;background:#0000003a;overflow:hidden}.cover-progress i{display:block;height:100%;background:var(--gold-300)}
+.cover-flag{font:800 9px/1.2 var(--sans);padding:3px 6px;border-radius:999px;background:#f0a34a;color:var(--ink)}
+.lib-spine:focus-visible{outline:none;z-index:5}
+.lib-spine:focus-visible .spine-face{transform:scaleX(0);transition-delay:0s}
+.lib-spine:focus-visible .cover-face{transform:scaleX(1);transition-delay:.13s;box-shadow:0 0 0 3px var(--gold-300)}
+@media(hover:hover){
+  .lib-spine:hover{z-index:5;transform:translateY(-6px)}
+  .lib-spine:hover .spine-face{transform:scaleX(0);transition-delay:0s}
+  .lib-spine:hover .cover-face{transform:scaleX(1);transition-delay:.13s}
+}
+.lib-spine.is-selected{transform:translateY(-12px)}
+.lib-spine.is-selected .spine-face{box-shadow:0 0 0 2px var(--gold-300)}
+.shelf-decor{margin-inline-start:auto;display:flex;align-items:flex-end;gap:16px;padding-inline:8px;pointer-events:none}
+.decor-stack{display:flex;flex-direction:column;align-items:center;gap:1px}.decor-stack b{display:block;height:11px;border:1px solid #00000047}
+.decor-stack b:nth-child(1){width:56px;background:#5a5470}.decor-stack b:nth-child(2){width:70px;background:#94473b}.decor-stack b:nth-child(3){width:62px;background:#3f5f48}
+.decor-candle{display:block;width:11px;height:32px;background:#efe3c6;position:relative}
+.decor-candle:before{content:"";position:absolute;top:-12px;left:2px;width:7px;height:11px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:#f5b94b;box-shadow:0 0 12px 3px #f5b94b44}
+.decor-basket{display:block;width:118px;height:28px;border-radius:3px 3px 10px 10px;background:repeating-linear-gradient(90deg,#b98a5a 0 6px,#946644 6px 9px);border-top:6px solid #a8504a}
+.decor-plant{display:block;width:24px;height:20px;border-radius:0 0 5px 5px;background:#a35c3a;position:relative}
+.decor-plant:before{content:"";position:absolute;bottom:20px;left:1px;width:22px;height:20px;background:#5f8f4f;clip-path:polygon(50% 0,62% 40%,95% 20%,72% 60%,100% 75%,0 75%,28% 60%,5% 20%,38% 40%)}
+.shelf-more{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px 16px;padding:4px 0 18px;color:#e6dcc2;font-size:13px}
+
+/* The open book: a card below the shelf holding the item itself (detail panel and actions). */
+.shelf-detail{display:grid;grid-template-columns:150px minmax(0,1fr);gap:24px;margin-top:22px;padding:20px;border:1px solid var(--border);border-radius:var(--r-lg);background:var(--surface);box-shadow:var(--sh-2)}
+.shelf-detail-cover{align-self:start;aspect-ratio:3/4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:14px;color:#f1e4c6;border-radius:2px 8px 8px 2px;
+  background:repeating-linear-gradient(45deg,#ffffff08 0 1px,transparent 1px 4px),var(--c);border:1px solid #00000047;outline:1px solid #d4b26c99;outline-offset:-8px}
+.shelf-detail-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.shelf-detail-body{min-width:0}
+.shelf-detail h3{margin:2px 0 4px;font:600 24px/1.3 var(--display);color:var(--green-900);overflow-wrap:anywhere}
+.shelf-detail-meta{margin:0 0 6px;color:var(--muted);font-size:13px}
+.shelf-detail-item{list-style:none;margin:0;padding:0}
+.library-item.in-card{border:0}
+.library-item.in-card .library-entry{display:none}
+.library-item.in-card .library-detail{padding:6px 0 0}
+@media(max-width:650px){
+  .library-shelf{padding:14px 12px 4px}.shelf-plank{margin-inline:-12px}
+  .shelf-detail{grid-template-columns:1fr;padding:16px}.shelf-detail-cover{width:110px}
+  .library-search{max-width:none;flex-basis:100%}
+}
+
+/* ---- Stage 3: starting a translation. Grouped options, option cards, a clear "what's missing". ---- */
+.file-illustration{width:auto;height:auto;padding:6px 10px;background:none}
+.file-illustration svg{width:84px;height:61px}
+.settings-fields{grid-template-columns:1fr 1fr;gap:16px 18px;padding-top:6px}
+.opt-group-title{grid-column:1/-1;display:flex;align-items:center;gap:10px;margin:18px 0 0;padding-top:14px;border-top:1px solid var(--border);font:650 17px/1.3 var(--display);color:var(--green-900)}
+.opt-group-title:first-child{margin-top:4px;padding-top:0;border-top:0}
+.opt-group-title:before{content:"";width:5px;height:5px;background:var(--clay);box-shadow:7px 0 0 var(--gold),14px 0 0 var(--green-600);margin-inline-end:14px}
+html[dir=rtl] .opt-group-title:before{box-shadow:-7px 0 0 var(--gold),-14px 0 0 var(--green-600)}
+.settings-fields>.field:has(.seg-group),.settings-fields>#model-settings{grid-column:1/-1}
+#model-settings{margin-top:0;padding:16px;border:1px solid var(--border);border-radius:var(--r);background:var(--surface-2)}
+.seg-source{position:absolute!important;width:1px!important;height:1px!important;min-height:0!important;padding:0!important;border:0!important;overflow:hidden;clip:rect(0 0 0 0);opacity:0;pointer-events:none}
+.seg-group{display:flex;flex-wrap:wrap;gap:8px}
+.seg-choice{flex:1 1 150px;display:flex;cursor:pointer;position:relative}
+.seg-choice input{position:absolute;opacity:0;pointer-events:none}
+.seg-choice span{flex:1;display:block;position:relative;min-height:48px;padding:10px 14px;padding-inline-start:38px;border:1px solid var(--border-2);border-radius:var(--r-sm);background:var(--surface);transition:border-color .15s,background .15s,box-shadow .15s}
+.seg-choice span:before{content:"";position:absolute;inset-inline-start:13px;top:14px;width:15px;height:15px;border-radius:50%;border:2px solid #b8a682;background:var(--surface)}
+.seg-choice b{display:block;font-size:14px;font-weight:650;color:var(--ink)}
+.seg-choice small{display:block;margin-top:2px;font-size:12px;line-height:1.45;color:var(--muted)}
+.seg-choice:hover span{border-color:var(--green-600)}
+.seg-choice input:checked+span{background:var(--green-50);border-color:var(--green-700);box-shadow:0 0 0 1px var(--green-700)}
+.seg-choice input:checked+span:before{border-color:var(--green-700);background:var(--green-700);box-shadow:inset 0 0 0 3px var(--surface)}
+.seg-choice input:focus-visible+span{outline:3px solid var(--focus);outline-offset:2px}
+.seg-choice.is-disabled{cursor:not-allowed}.seg-choice.is-disabled span{opacity:.5;background:var(--surface-3)}
+.field small,.advanced-note{font-size:12px}
+.preview-card{padding:14px 16px}
+.preview-card h3{font:650 15px/1.3 var(--display);color:var(--green-900)}
+#translate-button:disabled+.send-note{display:block;margin-top:10px;padding:9px 14px;border-radius:var(--r-sm);background:var(--warn-100);border:1px solid #efd6a0;color:#5c4210;font-size:12px}
+#provider-consent-detail{padding:12px 14px;border-radius:var(--r-sm);background:var(--surface-2);border:1px solid var(--border);color:var(--ink)}
+.terms-actions{font-size:12px}
+@media(max-width:650px){.settings-fields{grid-template-columns:1fr}.seg-choice{flex-basis:100%}}
+#advanced-roles>summary{cursor:pointer;min-height:36px;display:flex;align-items:center;font-size:13px;font-weight:650;color:var(--green-700)}
+
+/* ---- Stage 4: the bindery (ported from the prototype). ---- */
+/* The bindery — a warm desk scene with a real page turn. */
+.pixel-book.bindery{--turn:3s;position:relative;width:auto;zoom:1;image-rendering:auto;height:300px;margin:6px auto 22px;max-width:760px;border-radius:var(--r-xl);overflow:hidden;text-align:start;
+  background:radial-gradient(380px 240px at 50% 22%,#f3cf8a3d,transparent 70%),linear-gradient(#1d3a31,#152c25 64%,#3a2616 64%,#2b1c10);box-shadow:var(--sh-3),inset 0 0 0 1px #ffffff12}
+.bindery[data-step=reading]{--turn:2.4s}.bindery[data-step=reviewing]{--turn:3.6s}.bindery[data-step=rebuilding]{--turn:1.5s}
+.bd-glow{position:absolute;left:50%;top:40px;width:520px;height:320px;transform:translateX(-50%);background:radial-gradient(closest-side,#ffd99033,transparent);animation:glowpulse 6s ease-in-out infinite}
+@keyframes glowpulse{50%{opacity:.75}}
+.bd-window{position:absolute;top:26px;inset-inline-end:34px;width:86px;height:96px;border-radius:43px 43px 4px 4px;background:linear-gradient(#0f1d2c,#1f3a55);box-shadow:0 0 0 5px #5a3a23,0 0 0 7px #3c2614,inset 0 -20px 30px -10px #3b6a8a55;overflow:hidden}
+.bd-window:before,.bd-window:after{content:"";position:absolute;background:#5a3a23}
+.bd-window:before{left:41px;top:0;bottom:0;width:4px}.bd-window:after{top:50px;left:0;right:0;height:4px}
+.bd-moon{position:absolute;top:16px;left:14px;width:16px;height:16px;border-radius:50%;background:#f6e6b0;box-shadow:0 0 12px 2px #f6e6b066,inset -4px -2px 0 #e0cc8c}
+.bd-star{position:absolute;top:24px;left:60px;width:3px;height:3px;background:#fff6d0;animation:twinkle 2.6s steps(2,end) infinite}
+.bd-star.two{top:62px;left:22px;animation-delay:-1.2s}.bd-star.three{top:72px;left:64px;animation-delay:-.4s}
+.bd-lamp{position:absolute;top:0;left:50%;transform:translateX(-50%);width:80px;height:70px}
+.bd-cord{position:absolute;left:39px;top:0;width:2px;height:30px;background:#8a7a5a}
+.bd-shade{position:absolute;left:12px;top:28px;width:56px;height:22px;background:linear-gradient(#e4bf72,#b98a3f);clip-path:polygon(24% 0,76% 0,100% 100%,0 100%)}
+.bd-bulb{position:absolute;left:32px;top:46px;width:16px;height:8px;border-radius:0 0 8px 8px;background:#fff1c2;box-shadow:0 4px 18px 6px #ffd98f88}
+.bd-desk{position:absolute;inset-inline:0;bottom:0;height:108px;background:linear-gradient(#7a5233 0 3px,#6a4529 3px,#4b301b);box-shadow:inset 0 10px 24px -12px #0009}
+.bd-stage{position:absolute;left:50%;bottom:38px;width:360px;height:180px;margin-left:-180px;perspective:1100px;perspective-origin:50% -20%}
+.tome{position:absolute;inset:0;direction:ltr;transform-style:preserve-3d;transform:rotateX(34deg)}
+.tome-cover{position:absolute;inset:-8px -10px -12px;border-radius:8px;background:linear-gradient(90deg,#5e231b,#7d3226 48%,#5a1f17 50%,#7d3226 52%,#5e231b);box-shadow:0 26px 30px -12px #000c,inset 0 0 0 2px #c8963e66;transform:translateZ(-6px)}
+.tome-page{position:absolute;top:0;bottom:0;width:50%;padding:18px 20px 22px;overflow:hidden;box-shadow:0 1px 0 #e9dec4,0 2px 0 #d9cbaa,0 3px 0 #e9dec4,0 4px 0 #cdbd99}
+.tome-page.left{left:0;border-radius:6px 2px 2px 6px;background:linear-gradient(90deg,#efe3c6,#fffaee 10%,#fff8e9 70%,#e7d8b6 97%,#cdbb92)}
+.tome-page.right{right:0;border-radius:2px 6px 6px 2px;background:linear-gradient(90deg,#cdbb92,#e7d8b6 3%,#fff8e9 30%,#fffaee 90%,#efe3c6)}
+.tome-gutter{position:absolute;top:0;bottom:0;left:50%;width:30px;margin-left:-15px;background:linear-gradient(90deg,transparent,#5a3c1a2e 46%,#5a3c1a4d 50%,#5a3c1a2e 54%,transparent);transform:translateZ(3px);pointer-events:none}
+.lines{display:grid;gap:9px}
+.lines i{display:block;height:4px;width:var(--w);border-radius:2px;background:#9c8a68}
+.lines.tgt i{background:#3a6b59;justify-self:end}
+.lines.src i:nth-child(4){width:40%;background:#b0532f}
+.folio{position:absolute;bottom:6px;left:50%;transform:translateX(-50%);font:italic 600 .7rem/1 var(--display);color:#9c8a68}
+.leaf{position:absolute;top:0;bottom:0;left:50%;width:50%;transform-style:preserve-3d;transform-origin:0 50%;transform:translateZ(1px) rotateY(0deg);
+  animation:leaf-turn var(--turn) cubic-bezier(.55,.05,.3,1) infinite;animation-delay:var(--delay)}
+.leaf .face{position:absolute;inset:0;padding:18px 20px 22px;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
+.leaf .front{border-radius:2px 6px 6px 2px;background:linear-gradient(90deg,#d8c79f,#ece0c2 4%,#fff8e9 30%,#fffaee 90%,#f1e6cb)}
+.leaf .back{transform:rotateY(180deg);border-radius:6px 2px 2px 6px;background:linear-gradient(90deg,#f1e6cb,#fffaee 10%,#fff8e9 70%,#ece0c2 96%,#d8c79f)}
+.leaf .face:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#3c28144d,transparent 55%);opacity:0;animation:leaf-shade var(--turn) cubic-bezier(.55,.05,.3,1) infinite;animation-delay:var(--delay)}
+.leaf .back:after{background:linear-gradient(270deg,#3c281452,transparent 55%)}
+@keyframes leaf-turn{0%,12%{transform:translateZ(1px) rotateY(0deg)}50%{transform:translateZ(16px) rotateY(-90deg)}88%,100%{transform:translateZ(2px) rotateY(-180deg)}}
+@keyframes leaf-shade{0%,12%{opacity:0}48%{opacity:1}88%,100%{opacity:0}}
+.tome-page.right:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#3c281440,transparent 40%);opacity:0;animation:leaf-shade var(--turn) cubic-bezier(.55,.05,.3,1) infinite}
+/* Desk props: beside the book, out of the leaf's sweep. Physical sides, like the book itself. */
+.bd-perch{position:absolute;left:14px;bottom:108px;width:190px;height:2px;pointer-events:none}
+.bd-props{position:absolute;right:16px;bottom:62px;width:190px;height:110px;pointer-events:none}
+.bd-candle{position:absolute;right:6px;bottom:0;width:14px;height:46px;border-radius:2px;background:linear-gradient(90deg,#f6ecd2,#d9c9a1);box-shadow:0 4px 0 -1px #c9b48a}
+.bd-candle i{position:absolute;top:-16px;left:2px;width:10px;height:15px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:radial-gradient(circle at 50% 70%,#fff4c4,#f5b94b 60%,#e07b2a);box-shadow:0 0 22px 8px #f5b94b55;animation:flame 1.5s ease-in-out infinite}
+.bd-ink{position:absolute;right:38px;bottom:0;width:30px;height:24px;border-radius:7px 7px 9px 9px;background:radial-gradient(circle at 35% 30%,#4a586c,#151d28 70%);box-shadow:inset 0 2px 0 #ffffff26,0 4px 5px -1px #0008}
+.bd-ink:before{content:"";position:absolute;top:-6px;left:8px;width:14px;height:8px;border-radius:2px;background:#1b2430;box-shadow:inset 0 2px 0 #ffffff1c}
+.bd-quill{position:absolute;right:40px;bottom:14px;width:30px;height:76px;transform-origin:32% 100%;transform:rotate(12deg);filter:drop-shadow(2px 4px 2px #0006)}
+.bd-quill svg{display:block;width:100%;height:100%}
+.bd-glass{position:absolute;right:92px;bottom:4px;width:46px;height:46px;border-radius:50%;box-shadow:inset 0 0 0 5px #c8963e,inset 0 0 16px #ffffff66,0 6px 8px -4px #0008;background:radial-gradient(circle at 35% 30%,#ffffff55,#ffffff12 60%);opacity:0;transition:opacity .4s}
+.bd-glass:after{content:"";position:absolute;bottom:-14px;right:-8px;width:7px;height:22px;border-radius:3px;background:#5a3a23;transform:rotate(-45deg)}
+.bd-stamper{position:absolute;right:98px;bottom:0;width:36px;height:56px;opacity:0;transition:opacity .4s}
+.bd-stamper:before{content:"";position:absolute;bottom:0;left:0;width:36px;height:12px;border-radius:3px;background:linear-gradient(#7a5233,#4b301b);box-shadow:0 -3px 0 #c0392b inset}
+.bd-stamper i{position:absolute;bottom:12px;left:12px;width:12px;height:30px;border-radius:6px 6px 2px 2px;background:linear-gradient(90deg,#8a5d3b,#b98552 50%,#8a5d3b)}
+.bd-stamper i:before{content:"";position:absolute;top:-12px;left:-4px;width:20px;height:16px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#c98a5a,#7a4a2a)}
+/* Marks printed on the pages turn with them. */
+.lines.tgt i{position:relative}
+.page-stamp{position:absolute;left:16px;bottom:22px;padding:4px 8px;border:2px solid #c0392b;border-radius:4px;color:#c0392b;font:800 .6rem/1 var(--sans);letter-spacing:.1em;transform:rotate(-10deg);opacity:0}
+.bindery[data-step=translating] .bd-quill{animation:quill 2.6s ease-in-out infinite}
+.bindery[data-step=reading] .bd-glass{opacity:1;animation:glass 3.2s ease-in-out infinite}
+.bindery[data-step=reviewing] .lines.tgt i:nth-child(odd):after{content:"";position:absolute;left:-15px;top:-4px;width:9px;height:5px;border-left:2px solid #2f6b45;border-bottom:2px solid #2f6b45;transform:rotate(-45deg)}
+.bindery[data-step=rebuilding] .bd-stamper{opacity:1;animation:stamper 1.5s cubic-bezier(.5,0,.3,1.3) infinite}
+.bindery[data-step=rebuilding] .page-stamp{opacity:.85}
+@keyframes quill{0%,100%{transform:rotate(12deg) translate(0,0)}18%{transform:rotate(4deg) translate(-2px,-22px)}34%{transform:rotate(8deg) translate(0,-2px)}50%{transform:rotate(18deg) translate(-6px,-16px)}62%{transform:rotate(10deg) translate(-12px,-14px)}74%{transform:rotate(18deg) translate(-18px,-16px)}86%{transform:rotate(10deg) translate(-8px,-10px)}}
+@keyframes glass{0%,100%{transform:translate(0,0) rotate(0)}50%{transform:translate(-14px,-10px) rotate(-8deg)}}
+@keyframes stamper{0%,100%{transform:translateY(-14px)}45%,60%{transform:translateY(0)}}
+@keyframes flame{0%,100%{transform:scale(1,1)}50%{transform:scale(.88,1.08) translateY(-1px)}}
+/* Letters in the air: each one rises out of a page, flashes, and lands in the other script. */
+.bd-letters{position:absolute;left:50%;top:150px;width:0;height:0;pointer-events:none;z-index:3}
+.fl{position:absolute;left:var(--x);top:var(--y);opacity:0;font:600 24px/1 var(--display);color:#ffeab8;text-shadow:0 0 8px #ffcf6b,0 0 22px #ffb84d99}
+.fl b{position:absolute;left:0;top:0;font-weight:600;transform:translate(-50%,-50%)}
+.fl .to{opacity:0}
+.fl:after{content:"";position:absolute;left:-14px;top:-14px;width:28px;height:28px;border-radius:50%;background:radial-gradient(circle,#fff8dc,#ffd27a66 35%,transparent 70%);opacity:0}
+.bindery[data-step=translating] .fl,.bindery[data-step=reviewing] .fl{animation:fl-rise var(--dur) cubic-bezier(.35,.1,.4,1) infinite var(--d)}
+.bindery[data-step=translating] .fl .from,.bindery[data-step=reviewing] .fl .from{animation:fl-from var(--dur) ease-in-out infinite var(--d)}
+.bindery[data-step=translating] .fl .to,.bindery[data-step=reviewing] .fl .to{animation:fl-to var(--dur) ease-in-out infinite var(--d)}
+.bindery[data-step=translating] .fl:after,.bindery[data-step=reviewing] .fl:after{animation:fl-spark var(--dur) ease-out infinite var(--d)}
+.bindery[data-step=reviewing] .fl{color:#d9f0dc;text-shadow:0 0 8px #8fd17a,0 0 20px #5fae6c88}
+@keyframes fl-rise{0%{opacity:0;transform:translate(0,0) scale(.55)}14%{opacity:1}78%{opacity:1}100%{opacity:0;transform:translate(var(--dx),calc(var(--rise) * -1)) scale(1.2) rotate(-6deg)}}
+@keyframes fl-from{0%,36%{opacity:1;filter:blur(0);transform:translate(-50%,-50%) scale(1)}52%,100%{opacity:0;filter:blur(5px);transform:translate(-50%,-50%) scale(1.5)}}
+@keyframes fl-to{0%,40%{opacity:0;filter:blur(5px);transform:translate(-50%,-50%) scale(.5)}58%,100%{opacity:1;filter:blur(0);transform:translate(-50%,-50%) scale(1)}}
+@keyframes fl-spark{0%,38%{opacity:0;transform:scale(.4)}48%{opacity:1;transform:scale(1.5)}62%,100%{opacity:0;transform:scale(2)}}
+@media(max-width:640px){.bd-letters{top:140px;transform:scale(.72)}}
+.bindery:is([data-phase=paused],[data-phase=error],[data-phase=finished]) *,.bindery:is([data-phase=paused],[data-phase=error],[data-phase=finished]) *:before,.bindery:is([data-phase=paused],[data-phase=error],[data-phase=finished]) *:after{animation-play-state:paused!important}
+
+
+/* The app's own phases: the finished book (result page) shows its stamp; before reading, the leaf rests. */
+.bindery[data-phase=finished] .page-stamp,.bindery[data-step=completed] .page-stamp{opacity:.85}
+.bindery[data-phase=error]{filter:saturate(.6)}
+.result-book-host .pixel-book.bindery{height:240px;max-width:560px;margin-bottom:6px}
+.processing-percentage{margin-top:0}
+@media(max-width:650px){.pixel-book.bindery{height:250px}.bd-stage{transform:scale(.78);transform-origin:50% 100%}.bd-window{width:62px;height:72px;inset-inline-end:16px}.bd-window:before{left:29px}.bd-window:after{top:36px}.bd-props .bd-glass,.bd-props .bd-stamper,.bd-props .bd-ink,.bd-props .bd-quill{display:none}.bd-props{width:40px;right:8px}.bd-perch{display:none}}
+.result-notice{background:var(--warn-100);border-color:#efd6a0;color:#5c4210}
+.result-book-host .bd-stage{transform:scale(.84);transform-origin:50% 100%}

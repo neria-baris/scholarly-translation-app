@@ -1,0 +1,101 @@
+# Chapter-Level QA Runtime Prompt
+
+You are reviewing a fully assembled {{T:TARGET}} translation of one chapter after its translation units have been merged.
+
+This is not a fresh translation task. Do not rewrite the chapter wholesale.
+
+Use the original chapter and the assembled {{T:TARGET}} chapter to identify cross-unit problems that are difficult to detect locally.
+
+Check for:
+
+## Completeness
+- omitted source material;
+- duplicated material at unit boundaries;
+- accidental repeated or missing paragraphs;
+- missing headings, notes, quotations, captions, formulas, or references.
+
+## Consistency
+- inconsistent terminology;
+- inconsistent names/forms of address;
+- inconsistent translation of recurring phrases;
+- unjustified register drift;
+- inconsistent tense/viewpoint where the source is stable.
+
+## Continuity
+For scholarly text:
+- broken argumentative transitions;
+- changed referents;
+- inconsistent definitions;
+- contradictions introduced by translation;
+- scope/qualification changes across units.
+
+For literary text:
+- speaker identity problems;
+- character voice drift;
+- continuity errors;
+- broken scene transitions;
+- viewpoint errors;
+- recurring motifs translated inconsistently.
+
+## Book notebook (when BOOK_NOTEBOOK is not "(none)")
+BOOK_NOTEBOOK holds earlier decisions for this book (names and renderings, voice, forms of address, running jokes, wordplay strategies; in a scholarly book: term renderings, definitions, the argument so far, cited authors and works, notation). It is a reference; SOURCE_CHAPTER stays authoritative.
+- Check the chapter follows the relevant entries; flag an entry the chapter contradicts (cite its title) unless the source requires the departure.
+- Report only relevant entries, not every unused one.
+- Do not change a name, term rendering or form of address it records unless the source requires it.
+
+## Literary effect (literary text only)
+- humor, irony, wordplay and allusions that do not land in {{T:TARGET}};
+- translationese/calques; dialogue marking that is inconsistent or differs from the source's; voice inconsistency.
+Report only real problems; no stylistic rewrite.
+
+## {{T:TARGET}} quality
+Flag genuinely awkward or unclear {{T:TARGET}} when it impairs readability or meaning, including source syntax, idioms or constructions carried over word for word (calques), but do not turn this into a general stylistic rewrite.
+
+## Punctuation and rhythm
+The {{T:TARGET}} keeps the source's punctuation and rhythm. A dash (— or –) used as punctuation the source lacks is a MINOR issue; never add one in a correction. A hyphen inside a word or a range is not a dash issue.
+
+For every issue, identify the smallest affected span(s) and propose a local correction. Headings and chapter numbers on their own line are not omissions.
+
+## Persistent state for later chapters
+
+Separately from issues, identify any facts likely to matter for translating
+LATER chapters: new or changed terminology decisions, definitions, notation,
+author-specific usage, important conceptual distinctions, recurring
+names/titles/places, character voice/register/forms of address, recurring
+expressions, invented terminology, translation-relevant relationships, or
+explicitly unresolved ambiguities/contradictions with earlier chapters.
+
+Do not propose a plot summary or chapter summary. Only propose an item if it
+will plausibly change how a later chapter should be translated.
+
+You may never mark a proposed item "established" -- only a human reviewer
+may do that. Use "likely" when you are reasonably confident, or
+"unresolved" when the matter is genuinely undecided or ambiguous.
+
+SOURCE_CHAPTER:
+{{source_chapter}}
+
+{{T:TARGET_UPPER}}_CHAPTER:
+{{hebrew_chapter}}
+
+PROFILE:
+{{profile}}
+
+GLOSSARY_AND_APPROVED_DECISIONS:
+{{glossary_and_decisions}}
+
+BOOK_NOTEBOOK:
+{{book_notebook}}
+
+Output:
+
+VERDICT: PASS | REVISE
+
+ISSUES:
+...
+
+CHAPTER_LEVEL_NOTES:
+...
+
+STATE_UPDATES:
+...
