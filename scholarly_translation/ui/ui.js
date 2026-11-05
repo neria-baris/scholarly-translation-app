@@ -33,11 +33,20 @@ const catReact=(type,detail)=>{try{window.libraryCat?.react(type,detail)}catch(_
 let targetWanted=LANG==='en'?'en':'he';
 let previewView=null,manualEdit=false,resultError='',reviewSaved=false,libraryData=null,recentName=null;
 /*I18N-BEGIN*/
-const EN={ "grpHow": "How to translate", "grpModel": "Model and cost", "grpScan": "Scanned books and font", "grpTerms": "My terms", "brandAria": "Document translation — home", "brand": "Document translation", "help": "Help", "learning": "Language learning", "library": "Library", "heroEyebrow": "PDF / EPUB · to English", "heroTitle": "Your document, <span>in English.</span>", "heroText": "Upload a PDF or EPUB, choose how to translate it, and download it translated in the same format.<br class=\"desktop-break\"> You can review and edit it — if you want.", "fileAria": "Choose a PDF or EPUB", "dropAria": "Choose a PDF or EPUB file, or drag it here", "dropTitle": "Choose a file or drag it here", "chooseFile": "Choose a file <span aria-hidden=\"true\">→</span>", "uploadNote": "PDF with embedded text, or EPUB · up to 25 MB", "changeFile": "Change", "optionsLabel": "Options <span class=\"chevron\" aria-hidden=\"true\">⌄</span>", "lblProfile": "Translation profile", "optScholarly": "Academic (precise; notes and terminology preserved)", "optLiterary": "Literary (fluent, faithful to style)", "lblQuality": "Review level", "optFast": "Fast — no extra review", "optChecked": "Checked — risky segments + chapter review", "optThorough": "In-depth — every segment + chapter review", "lblModel": "Model", "optAuto": "Auto — trial preview (simulated), no cost and no real translation", "optConfigured": "My own model (API key)", "lblTarget": "Target language", "optTgtHe": "Hebrew", "optTgtEn": "English", "noteTarget": "English is available with your own model (API key). Auto mode previews Hebrew.", "lblLanguage": "Source language", "optLangAuto": "Detect automatically", "optEn": "English", "optFr": "French", "optJa": "Japanese", "lblBudget": "Maximum budget per document ($)", "phBudget": "e.g. 5", "noteBudget": "Required with my own model: there is no built-in cap; your limit is enforced as a hard stop.", "lblOcr": "Scanned books (OCR)", "optOcrVision": "Local recognition + model check against the page image", "optOcrOff": "Local recognition only (free)", "noteOcr": "Pages without embedded text are recognized with Tesseract on your computer. The model check compares each page with its image and fixes mistakes and formulas; it needs a model that reads images.", "lblFontBefore": "PDF font (before translation)", "noteFontBefore": "Relevant to PDF files only; an EPUB keeps its original design.", "noteKeys": "My own model: keys are kept in the local server's memory for this run. To keep them after the program closes, tick \"Remember on this computer\": they are stored encrypted in the Windows Credential Manager under your user account — not in project files, the settings file or the browser.", "rememberKeys": "Remember on this computer (Windows Credential Manager)", "forgetKeys": "Delete the saved keys from this computer", "keyDlgTitle": "API key", "keyDlgEnter": "Enter or replace a key", "keysGuideLink": "How do I get a key? <span aria-hidden=\"true\">↗</span>", "roleTranslator": "Translator", "roleQa": "Quality review (QA) <small>— same as the translator by default</small>", "advRoles": "Advanced chapter reviewer selection (chapter_qa)", "saveKeys": "Save API keys", "previewTitle": "Cost estimate (before anything is sent)", "sampleBtn": "Try a sample PDF, free", "libraryStart": "Library: all finished translations <span aria-hidden=\"true\">→</span>", "formatNote": "We translate the document structure (paragraphs, headings). A PDF is rebuilt and does not reproduce the original layout; an EPUB keeps its original chapter structure and design.", "progressAria": "Translation progress", "noteResumeKeys": "The server was restarted and lost the temporary API keys held in memory. Enter them again to continue (tick \"Remember\" so you won't need to next time).", "decisionTitle": "A decision from you is needed to continue", "decisionNote": "The decision is recorded in the cost log. No call is sent to the provider until the work continues.", "recheckTitle": "Saved review answers that were not used", "recheckBtn": "Re-check them (no provider call)", "recheckNote": "The check re-reads the saved answers. Chapters with substantive findings are reopened, and the fixes themselves are sent to the provider only when the work continues.", "crossTitle": "Cross-chapter review of the book", "crossText": "First a name table is built: the model reads the original book, passage by passage, and collects invented names, titles and terms; in a scholarly book also thinkers and authors, cited works and key terms (vowel marks allowed); the table is locked. Then the review compares the source with the translation in windows of 8 chapters with one overlapping chapter (1–8, 8–15, 15–22 …); the overlapping chapter, which has already been reviewed, is the authority. Inconsistent names, terms, references and continuity are corrected automatically and re-checked, and the previous Hebrew text is kept.", "crossNote": "Paid provider calls start only when you click Resume. A re-run re-sends only text that changed.", "crossDone": "The review was prepared. Click Resume to run it.", "sugTitle": "The review's suggested corrections", "sugBtn": "Prepare applying the corrections", "sugNote": "The previous text is kept, and segments you edited yourself are not changed. Paid provider calls start only when you click Resume.", "sugDone": "Applying was prepared. Click Resume to run it.", "pauseBtn": "Pause", "resumeBtn": "Resume", "draftBadge": "Draft", "detailsSummary": "Details about the review and the file", "nbTitle": "Book notebook (optional)", "nbText": "During translation the model records names, terms and translation choices to keep them consistent. You don't need to do anything; you can download it for reference. The download also includes the table of names and terms.", "nbDownload": "Download the notebook (Markdown) <span aria-hidden=\"true\">↓</span>", "nbTermsText": "The terms in this document. To correct a term for future translations, click \"Correct\" and it is saved in My terms.", "lblTerms": "My terms (binding in every translation)", "phTerms": "無尽蔵性 | inexhaustibility = non-exhaustibility", "noteTerms": "One term per line: source = translation. Separate other source forms of the term with |, and write a note after #. The list is stored on this computer, separately for each target language. A term that occurs in the document binds the model, overrides the model's choices, and is checked in the translation.", "saveTerms": "Save the terms", "lblFontAfter": "PDF font (after translation)", "noteFontAfter": "Changing the font rebuilds the PDF only; it sends no call to the model.", "downloadBtn": "Download the translated file <span aria-hidden=\"true\">↓</span>", "reviewBtn": "Review and edit (optional) <span aria-hidden=\"true\">→</span>", "reviewTitle": "Source beside translation", "unitAria": "Choose a segment to review", "closeReviewAria": "Close the review", "srcHead": "Source", "tgtHead": "Translation · editable", "editAria": "Edit the translation", "saveEditBtn": "Save changes", "reviewNote": "Saving updates the downloadable file.", "newDoc": "← Translate another document", "draftNote": "An automatic draft; you can download it right away, or review it first.", "libTitle": "Your translations", "libTabsAria": "Type of documents in the library", "tabDone": "Ready", "tabProgress": "In progress", "back": "← Back", "footerNote": "The file and the result are stored on your computer.", "consentTitle": "Approve sending to providers", "consentText": "The translation and the checks share one budget per document. This is a local estimate limit based on the price list, not a billing limit on the provider account.", "consentOk": "Approve and start translating", "cancel": "Cancel", "connTitle": "Translation model", "closeAria": "Close", "close": "Close", "roleChoose": "Choose a model…", "roleOther": "Other (custom model/provider)…", "roleCompat": "OpenAI-compatible (custom address)", "phModelId": "Model ID", "phBaseUrl": "https://… (OpenAI-compatible only)", "phContext": "Context window (tokens)", "phMaxOut": "Output cap (up to 128,000 tokens)", "phUsable": "Usable window (optional)", "phRateIn": "Input rate ($/1M, optional)", "phRateOut": "Output rate ($/1M, optional)", "phRateCached": "Cache read ($/1M, optional)", "phRateWrite": "Short cache write ($/1M, optional)", "phRateWrite1h": "Hourly cache write ($/1M, optional)", "roleRateNote": "If no rate is entered, a conservative assumption marked \"unofficial\" is used for estimation only.", "signIn": "Sign in with Google", "accountAria": "Google account", "syncNow": "Sync now", "signOut": "Sign out", "updateReady": "An update is ready — it will apply next time you open the app.", "autoUpdate": "Automatic updates" };
+const EN={ "grpHow": "How to translate", "grpModel": "Model and cost", "grpScan": "Scanned books and font", "grpTerms": "My terms", "brandAria": "Document translation — home", "brand": "Document translation", "help": "Help", "learning": "Language learning", "library": "Library", "heroEyebrow": "PDF / EPUB · to English", "heroTitle": "Your document, <span>in English.</span>", "heroText": "Upload a PDF or EPUB, choose how to translate it, and download it translated in the same format.<br class=\"desktop-break\"> You can review and edit it — if you want.", "fileAria": "Choose a PDF or EPUB", "dropAria": "Choose a PDF or EPUB file, or drag it here", "dropTitle": "Choose a file or drag it here", "chooseFile": "Choose a file <span aria-hidden=\"true\">→</span>", "uploadNote": "PDF with embedded text, or EPUB · up to 25 MB", "changeFile": "Change", "optionsLabel": "Options <span class=\"chevron\" aria-hidden=\"true\">⌄</span>", "lblProfile": "Translation profile", "optScholarly": "Academic (precise; notes and terminology preserved)", "optLiterary": "Literary (fluent, faithful to style)", "lblQuality": "Review level", "optFast": "Fast — no extra review", "optChecked": "Checked — risky segments + chapter review (recommended)", "optThorough": "In-depth — every segment + chapter review", "lblModel": "Model", "optAuto": "Auto — trial preview (simulated), no cost and no real translation", "optConfigured": "My own model (API key)", "lblTarget": "Target language", "optTgtHe": "Hebrew", "optTgtEn": "English", "noteTarget": "English is available with your own model (API key). Auto mode previews Hebrew.", "lblLanguage": "Source language", "optLangAuto": "Detect automatically", "optEn": "English", "optFr": "French", "optJa": "Japanese", "lblBudget": "Maximum budget per document ($)", "phBudget": "e.g. 5", "noteBudget": "Required with my own model: there is no built-in cap; your limit is enforced as a hard stop.", "lblOcr": "Scanned books (OCR)", "optOcrVision": "Local recognition + model check against the page image", "optOcrOff": "Local recognition only (free)", "noteOcr": "Pages without embedded text are recognized with Tesseract on your computer. The model check compares each page with its image and fixes mistakes and formulas; it needs a model that reads images.", "lblFontBefore": "PDF font (before translation)", "noteFontBefore": "Relevant to PDF files only; an EPUB keeps its original design.", "noteKeys": "Own model: API keys are entered, saved on this computer and deleted only in the key window (the key icon in the header). A key saved on this computer is stored encrypted in the Windows Credential Manager under your user account, not in project files, the settings file or the browser.", "rememberKeys": "Remember on this computer (Windows Credential Manager)", "forgetKeys": "Delete the saved keys from this computer", "keyDlgTitle": "API key", "keysGuideLink": "How do I get a key? <span aria-hidden=\"true\">↗</span>", "roleTranslator": "Translator", "roleQa": "Quality review (QA) <small>— Luna with extra-high reasoning by default</small>", "advRoles": "Advanced chapter reviewer selection (chapter_qa)", "saveKeys": "Save API keys", "accessKeys": "Manage keys", "accessProfile": "Profile window", "resumeEnterKey": "Enter a key…", "previewTitle": "Cost estimate (before anything is sent)", "sampleBtn": "Try a sample PDF, free", "libraryStart": "Library: all finished translations <span aria-hidden=\"true\">→</span>", "formatNote": "We translate the document structure (paragraphs, headings). A PDF is rebuilt and does not reproduce the original layout; an EPUB keeps its original chapter structure and design.", "progressAria": "Translation progress", "noteResumeKeys": "The server restarted and lost the temporary API keys held in memory. To continue, enter them again in the key window (tick \"Remember on this computer\" there so you will not need to next time).", "decisionTitle": "A decision from you is needed to continue", "decisionNote": "The decision is recorded in the cost log. No call is sent to the provider until the work continues.", "recheckTitle": "Saved review answers that were not used", "recheckBtn": "Re-check them (no provider call)", "recheckNote": "The check re-reads the saved answers. Chapters with substantive findings are reopened, and the fixes themselves are sent to the provider only when the work continues.", "crossTitle": "Cross-chapter review of the book", "crossText": "First a name table is built: the model reads the original book, passage by passage, and collects invented names, titles and terms; in a scholarly book also thinkers and authors, cited works and key terms (vowel marks allowed); the table is locked. Then the review compares the source with the translation in windows of 8 chapters with one overlapping chapter (1–8, 8–15, 15–22 …); the overlapping chapter, which has already been reviewed, is the authority. Inconsistent names, terms, references and continuity are corrected automatically and re-checked, and the previous Hebrew text is kept.", "crossNote": "Paid provider calls start only when you click Resume. A re-run re-sends only text that changed.", "crossDone": "The review was prepared. Click Resume to run it.", "sugTitle": "The review's suggested corrections", "sugBtn": "Prepare applying the corrections", "sugNote": "The previous text is kept, and segments you edited yourself are not changed. Paid provider calls start only when you click Resume.", "sugDone": "Applying was prepared. Click Resume to run it.", "pauseBtn": "Pause", "resumeBtn": "Resume", "draftBadge": "Draft", "detailsSummary": "Details about the review and the file", "nbTitle": "Book notebook (optional)", "nbText": "During translation the model records names, terms and translation choices to keep them consistent. You don't need to do anything; you can download it for reference. The download also includes the table of names and terms.", "nbDownload": "Download the notebook (Markdown) <span aria-hidden=\"true\">↓</span>", "nbTermsText": "The terms in this document. To correct a term for future translations, click \"Correct\" and it is saved in My terms.", "lblTerms": "My terms (binding in every translation)", "phTerms": "無尽蔵性 | inexhaustibility = non-exhaustibility", "noteTerms": "One term per line: source = translation. Separate other source forms of the term with |, and write a note after #. The list is stored on this computer, separately for each target language. A term that occurs in the document binds the model, overrides the model's choices, and is checked in the translation.", "saveTerms": "Save the terms", "lblFontAfter": "PDF font (after translation)", "noteFontAfter": "Changing the font rebuilds the PDF only; it sends no call to the model.", "downloadBtn": "Download the translated file <span aria-hidden=\"true\">↓</span>", "reviewBtn": "Review and edit (optional) <span aria-hidden=\"true\">→</span>", "reviewTitle": "Source beside translation", "unitAria": "Choose a segment to review", "closeReviewAria": "Close the review", "srcHead": "Source", "tgtHead": "Translation · editable", "editAria": "Edit the translation", "saveEditBtn": "Save changes", "reviewNote": "Saving updates the downloadable file.", "newDoc": "← Translate another document", "draftNote": "An automatic draft; you can download it right away, or review it first.", "libTitle": "Your translations", "libTabsAria": "Type of documents in the library", "tabDone": "Ready", "tabProgress": "In progress", "back": "← Back", "footerNote": "The file and the result are stored on your computer.", "consentTitle": "Approve sending to providers", "consentText": "The translation and the checks share one budget per document. This is a local estimate limit based on the price list, not a billing limit on the provider account.", "consentOk": "Approve and start translating", "cancel": "Cancel", "connTitle": "Translation model", "closeAria": "Close", "close": "Close", "roleChoose": "Choose a model…", "roleOther": "Other (custom model/provider)…", "roleCompat": "OpenAI-compatible (custom address)", "phModelId": "Model ID", "phBaseUrl": "https://… (OpenAI-compatible only)", "phContext": "Context window (tokens)", "phMaxOut": "Output cap (up to 128,000 tokens)", "phUsable": "Usable window (optional)", "phRateIn": "Input rate ($/1M, optional)", "phRateOut": "Output rate ($/1M, optional)", "phRateCached": "Cache read ($/1M, optional)", "phRateWrite": "Short cache write ($/1M, optional)", "phRateWrite1h": "Hourly cache write ($/1M, optional)", "roleRateNote": "If no rate is entered, a conservative assumption marked \"unofficial\" is used for estimation only.", "signIn": "Sign in with Google", "accountAria": "Google account", "syncNow": "Sync now", "signOut": "Sign out", "updateReady": "An update is ready — it will apply next time you open the app.", "autoUpdate": "Automatic updates" };
 const STAGE_EN={"קריאת המסמך": "Reading the document", "מתרגם": "Translating", "בניית המסמך המתורגם": "Building the translated document", "הושלם": "Completed", "מושהה — התוצאות נשמרו": "Paused — results saved", "זיהוי טקסט (OCR) בעמודים סרוקים": "Recognizing text (OCR) on scanned pages", "בדיקת ה־OCR בעזרת המודל": "Checking the OCR with the model", "בבדיקה": "Reviewing", "בבדיקת פרקים": "Reviewing chapters", "ממתין לבדיקה רוחבית": "Waiting for the cross-chapter review", "הופסק": "Stopped", "בניית טבלת השמות של הספר": "Building the book's name table", "בניית טבלת השמות והמונחים": "Building the table of names and terms", "תרגום פרק / קבוצת יחידות": "Translating a chapter / group of units", "ביקורת מקטעים ו־QA פרקי": "Segment review and chapter QA"};
 const IN_PROGRESS_EN={"failed": "Stopped", "paused": "Paused", "interrupted": "Interrupted", "queued": "Waiting", "reading": "Reading", "translating": "Translating now", "reviewing": "Reviewing", "rebuilding": "Building the file"};
 const LIMITATION_EN={"missing_translation": "Segments left in the source language", "inline_markup_flattened": "Inline formatting (emphasis/links) simplified", "units_merged_multiple_blocks": "Segments merged from several paragraphs"};
 const SERVER_EN={
+"החיבור לחשבון OpenAI אינו זמין בגרסה זו.": "OpenAI account sign-in is not available in this version.",
+"תקציב חשבון OpenAI (ChatGPT) נגמר. אפשר להמשיך עם מפתח API או להמתין לחידוש התקציב.": "The OpenAI (ChatGPT) account budget has run out. Continue with an API key or wait for the budget to renew.",
+"חשבון ה־ChatGPT המחובר אינו מורשה לשימוש במכסת התוכנית. אפשר להתחבר מחדש או להשתמש במפתח API.": "The connected ChatGPT account is not allowed to use plan usage. Reconnect, or use an API key.",
+"החשבון של OpenAI אינו מחובר. התחברו מחדש או השתמשו במפתח API.": "The OpenAI account is not connected. Reconnect, or use an API key.",
+"מכסת התוכנית אינה יכולה לשרת בקשה זו. נדרש מפתח API.": "Plan usage cannot serve this request. An API key is required.",
+"מכסת התוכנית אינה זמינה כרגע. נסו שוב מאוחר יותר או השתמשו במפתח API.": "Plan usage is not available right now. Try again later, or use an API key.",
+"לא ניתן להתחיל התחברות ל־OpenAI.": "Could not start the OpenAI sign-in.",
+"הגדרת ההמשך האוטומטי אינה תקינה.": "The automatic-continue setting is not valid.",
+"שמירת ההגדרה נכשלה.": "Saving the setting failed.",
 "מחברת הספר לא עודכנה אחרי פרק {1} (תקציב או כשל בקריאה); ההמשך לא הושפע.": "The book notebook was not updated after chapter {1} (budget or call failure); later work was not affected.",
 "הבדיקה הרוחבית של פרקים {1}–{2} לא בוצעה ({3}); אפשר להפעיל אותה שוב מכפתור הבדיקה הרוחבית.": "The cross-chapter review of chapters {1}–{2} did not run ({3}); you can run it again from the cross-chapter review button.",
 "בדיקה רוחבית של פרקים {1}–{2}": "Cross-chapter review of chapters {1}–{2}",
@@ -324,6 +333,22 @@ function initRoleUI(){
     .forEach(input=>input.addEventListener('input',()=>onOtherFieldChange(input.dataset.role)));
   if(LANG==='en')applyStatic();
 }
+// Default models (user decision 2026-11-05): Luna translates with its default reasoning (low); the quality
+// review and the chapter reviewer are Luna with very high reasoning (xhigh). Applied once the catalogue is known,
+// and only if nothing was chosen yet.
+const DEFAULT_ROLES={translator:['openai','gpt-6-luna'],semantic_reviewer:['openai','gpt-6-luna','xhigh'],chapter_qa:['openai','gpt-6-luna','xhigh']};
+function applyDefaultRoles(){
+  if(Object.values(roleSelections).some(Boolean))return;
+  for(const [role,[provider,model,reasoning]] of Object.entries(DEFAULT_ROLES)){
+    const entry=modelCatalog.find(m=>m.provider===provider&&m.model===model);if(!entry)continue;
+    roleSelections[role]={source:'catalog',provider,model};
+    if(reasoning&&(entry.reasoning_values||[]).includes(reasoning))roleSelections[role].reasoning=reasoning;
+    syncRoleUI(role);renderReasoning(role);
+  }
+  // The reviewers are chosen in their own right, so they no longer follow the translator.
+  if(roleSelections.semantic_reviewer)qaTouched=true;
+  if(roleSelections.chapter_qa)chapterQaTouched=true;
+}
 function onRoleSelectChange(role,value){
   if(role==='translator')catReact('model',{id:String(value).split(':').pop()});
   if(role==='semantic_reviewer')qaTouched=true;
@@ -465,18 +490,9 @@ function renderKeyDialog(){
   $('key-dialog-note').textContent=!keyRememberSupported?'':ids.length&&!unsaved?'':
     t('כדי שהמפתח יישאר אחרי סגירת התוכנית, סמנו "לזכור במחשב הזה" כשאתם שומרים אותו.','To keep the key after the program closes, tick "Remember on this computer" when you save it.');
   $('key-dialog-note').hidden=!$('key-dialog-note').textContent;
-  $('key-dialog-forget').hidden=!Object.keys(keyProvidersSaved).length;
 }
-function showKeyDialog(){$('key-dialog-message').textContent='';renderKeyDialog();if(!$('key-dialog').open)$('key-dialog').showModal()}
-function enterKeyFromDialog(){
-  $('key-dialog').close();
-  const switched=!isReal();
-  if(switched){$('model').value='configured';$('model').dispatchEvent(new Event('change'))}
-  $('translation-options').open=true;
-  // Switching models schedules a preview that focuses an empty budget field; focus the key after it.
-  setTimeout(()=>{const target=document.querySelector('.key-input')||document.querySelector('.role-select[data-role="translator"]')||$('model');
-    target.scrollIntoView({block:'center'});target.focus({preventScroll:true})},switched?650:0);
-}
+function showKeyDialog(){$('key-message').textContent='';renderKeyDialog();renderKeyDialogFields();if(!$('key-dialog').open)$('key-dialog').showModal();
+  const first=document.querySelector('#key-dialog-fields .key-input');if(first)first.focus()}
 function applyKeyResult(result){
   keyProvidersAvailable=result.available||{};
   if(result.saved)keyProvidersSaved=result.saved;
@@ -488,47 +504,115 @@ function rememberChoice(id){return keyRememberSupported?{remember:$(id).checked}
 function savedKeysMessage(id){return keyRememberSupported&&$(id).checked?
   t('המפתחות נשמרו במחשב (מנהל האישורים של Windows) ויישארו גם אחרי סגירת התוכנית.',"Keys saved on this computer (Windows Credential Manager); they stay after the program closes."):
   t('המפתחות נשמרו בזיכרון השרת להרצה הנוכחית.',"Keys saved in the local server's memory for the current run.")}
-function setRememberChecked(checked){for(const id of ['remember-keys','resume-remember-keys'])if($(id))$(id).checked=checked}
+function setRememberChecked(checked){if($('remember-keys'))$('remember-keys').checked=checked}
 async function forgetSavedKeys(event){
-  const target=event&&event.currentTarget&&event.currentTarget.id==='key-dialog-forget'?'key-dialog-message':'key-message';
+  const target='key-message';
   try{const result=await request('/model-keys',{forget_saved:true});applyKeyResult(result);renderKeyFields();setRememberChecked(false);remember('remember-keys','0');
     $(target).textContent=t('המפתחות השמורים נמחקו מהמחשב. הם נשארים בזיכרון עד סגירת התוכנית.',"The saved keys were deleted from this computer. They stay in memory until the program closes.");
   }catch(error){srvText($(target),error.message)}
 }
+// Keys are entered only in the key window (the key icon in the header), never in the translation flow.
 function renderKeyFields(){
-  renderKeyIndicator();
-  const container=document.querySelector('.key-fields');if(!container)return;
-  const ids=requiredProviderIds();
-  container.innerHTML=ids.map(pid=>`<div><label for="key-${esc(pid)}">${t('מפתח API — ','API key — ')}${esc(pid)}${keyState(pid)}</label>
+  renderKeyIndicator();renderAccessSummary();
+  if(!$('key-dialog').open)renderKeyDialogFields(); // never wipe what is being typed
+}
+function dialogProviderIds(){
+  const ids=new Set(['openai','anthropic']);
+  for(const pid of requiredProviderIds())ids.add(pid);
+  if(currentJob&&currentJob.settings)for(const pid of requiredProviderIdsForJobSettings(currentJob.settings))ids.add(pid);
+  for(const pid in keyProvidersAvailable)if(keyProvidersAvailable[pid])ids.add(pid);
+  return [...ids];
+}
+function renderKeyDialogFields(){
+  const container=$('key-dialog-fields');if(!container)return;
+  container.innerHTML=dialogProviderIds().map(pid=>`<div><label for="key-${esc(pid)}">${t('מפתח API — ','API key — ')}<bdi dir="ltr">${esc(pid)}</bdi>${keyState(pid)}${openaiCoversProvider(pid)&&!keyProvidersAvailable[pid]?t(' (לא חובה: חשבון OpenAI המחובר משמש לתרגום; המפתח ישמש רק כשהתקציב ייגמר)',' (optional: the connected OpenAI account is used; the key only when its budget runs out)'):''}</label>
     <small dir="ltr">${esc(resolvedProviders.find(p=>p.id===pid)?.endpoint||t('הספק הרשמי','the official provider'))}</small>
     <input id="key-${esc(pid)}" class="key-input" type="password" data-provider="${esc(pid)}" autocomplete="off"></div>`).join('');
+}
+// The translation options say what covers the chosen models and open the right window; nothing is entered here.
+function renderAccessSummary(){
+  if(!$('access-summary'))return;
+  const acc=openaiState&&openaiState.account,available=!!(acc&&acc.available),line=$('access-openai');
+  line.hidden=!available;
+  if(available)line.textContent=!acc.signed_in?t('חשבון OpenAI: לא מחובר. אפשר לחבר אותו בחלון הפרופיל (הציור בכותרת).','OpenAI account: not connected. Connect it in the profile window (the drawing in the header).'):
+    acc.plan_usage?t('חשבון OpenAI: מחובר — מודלים של OpenAI יעבדו על חשבון המנוי.','OpenAI account: connected — OpenAI models run on the plan.')+(oaStateLine()?' '+oaStateLine():''):
+    t('חשבון OpenAI: מחובר, אבל השימוש במנוי לא אושר. אפשר להתחבר מחדש בחלון הפרופיל.','OpenAI account: connected, but plan usage was not allowed. Reconnect in the profile window.');
+  const open=$('access-open-profile');open.hidden=!available||!document.querySelector('.pf-button');open.textContent=t('חלון הפרופיל','Profile window');
+  const required=requiredProviderIds(),missing=missingKeyProviders(),present=required.filter(pid=>keyProvidersAvailable[pid]);
+  $('access-keys').textContent=!required.length?'':missing.length?t('חסר מפתח API עבור: ','Missing API key for: ')+missing.join(', ')+t('. מזינים אותו בחלון המפתח (סמל המפתח בכותרת).','. Enter it in the key window (the key icon in the header).'):
+    present.length?t('יש מפתח API עבור: ','API key present for: ')+present.join(', ')+'.':t('אין צורך במפתח API: חשבון OpenAI המחובר מכסה את המודל.','No API key needed: the connected OpenAI account covers the model.');
+  $('access-open-keys').textContent=missing.length?t('הזנת מפתח…','Enter a key…'):t('ניהול מפתחות','Manage keys');
 }
 async function saveKeys(){
   const inputs=[...document.querySelectorAll('.key-input')];
   const keys={};for(const input of inputs)if(input.value)keys[input.dataset.provider]=input.value;
   $('key-message').textContent=t('שומר…',"Saving…");
   try{const result=await request('/model-keys',{keys,...rememberChoice('remember-keys')});applyKeyResult(result);
-    $('key-message').textContent=savedKeysMessage('remember-keys');renderKeyFields();updateSettings();
+    $('key-message').textContent=savedKeysMessage('remember-keys');renderKeyDialogFields();renderKeyFields();updateSettings();renderResumeKeyFields();
   }catch(error){srvText($('key-message'),error.message)}
   finally{for(const input of inputs)input.value=''}
 }
-function missingKeyProviders(){return requiredProviderIds().filter(pid=>!keyProvidersAvailable[pid])}
-function renderResumeKeyFields(){
-  const container=$('resume-key-fields');if(!container)return;
-  const required=requiredProviderIdsForJobSettings(currentJob&&currentJob.settings);
-  const missing=required.filter(pid=>!keyProvidersAvailable[pid]);
-  $('resume-keys').hidden=!missing.length;
-  container.innerHTML=missing.map(pid=>`<div><label for="resume-key-${pid}">${t('מפתח API — ','API key — ')}${esc(pid)}</label>
-    <input id="resume-key-${pid}" class="resume-key-input" type="password" data-provider="${esc(pid)}" autocomplete="off"></div>`).join('');
+
+// ---- OpenAI account (Sign in with ChatGPT): plan first, API key on exhaustion ----
+let openaiState=null,openaiTimer=null,openaiSignInUntil=0,openaiLastFallbackCalls=null,openaiSig='',openaiFetchedAt=0;
+// The model-settings card and the profile window (profile.js) share one account state: whichever learns of a
+// change announces it, so signing in from either place is enough for the translation flow.
+function openaiSignature(s){const a=(s&&s.account)||{},p=(s&&s.plan)||{};return JSON.stringify([a.available,a.signed_in,a.plan_usage,s&&s.auto_fallback,s&&s.key_available,p.state,p.fallback_calls])}
+function announceOpenAI(){const sig=openaiSignature(openaiState);if(sig===openaiSig)return false;const first=!openaiSig;openaiSig=sig;
+  // The first state after loading is not a change; only later differences are announced.
+  if(!first){try{window.dispatchEvent(new CustomEvent('openai-account',{detail:{state:openaiState,source:'ui'}}))}catch(_){}}return true}
+window.addEventListener('openai-account',event=>{const d=event.detail;if(!d||d.source==='ui'||!d.state)return;
+  openaiState=d.state;openaiSig=openaiSignature(openaiState);clearTimeout(openaiTimer);openaiSignInUntil=0;
+  renderOpenAI();renderOpenAIJobNotice();renderKeyFields();updateSettings()});
+// Coming back from OpenAI's consent page (another tab or window): check at once.
+function openaiRecheck(){if(document.hidden||Date.now()-openaiFetchedAt<3000)return;refreshOpenAI()}
+window.addEventListener('focus',openaiRecheck);document.addEventListener('visibilitychange',openaiRecheck);
+function oaTime(iso){if(!iso)return '';const d=new Date(iso);return isNaN(d)?'':d.toLocaleTimeString(LANG==='en'?'en-GB':'he-IL',{hour:'2-digit',minute:'2-digit'})}
+function openaiPlanGranted(){return !!(openaiState&&openaiState.account&&openaiState.account.signed_in&&openaiState.account.plan_usage)}
+function openaiCoversProvider(pid){return openaiPlanGranted()&&pid==='openai'}
+function oaStateLine(){
+  const plan=openaiState&&openaiState.plan;if(!plan||!openaiPlanGranted())return '';
+  const parts=[];
+  if(plan.state==='exhausted')parts.push(t('תקציב החשבון נגמר ב־','The account budget ran out at ')+oaTime(plan.since)+(plan.retry_at?t('; ניסיון הבא ב־','; next try at ')+oaTime(plan.retry_at):''));
+  else if(plan.state==='not_eligible')parts.push(t('החשבון אינו זכאי לשימוש בתוכנית; התחברו מחדש.','The account is not eligible for plan usage; reconnect.'));
+  else parts.push(t('החשבון מוכן לשימוש.','The account is ready to use.'));
+  if(plan.fallback_calls>0)parts.push(t(plan.fallback_calls+' פעמים עברו הקריאות למפתח ה־API','Switched to the API key '+plan.fallback_calls+' times')+(plan.last_fallback_at?t(' (לאחרונה ב־',' (last at ')+oaTime(plan.last_fallback_at)+')':''));
+  return parts.join(' · ');
 }
-async function saveResumeKeys(){
-  const inputs=[...document.querySelectorAll('.resume-key-input')];
-  const keys={};for(const input of inputs)if(input.value)keys[input.dataset.provider]=input.value;
-  $('resume-key-message').textContent=t('שומר…',"Saving…");
-  try{const result=await request('/model-keys',{keys,...rememberChoice('resume-remember-keys')});applyKeyResult(result);
-    $('resume-key-message').textContent=t('המפתחות נשמרו. אפשר להמשיך.',"Keys saved. You can continue.");renderResumeKeyFields();
-  }catch(error){srvText($('resume-key-message'),error.message)}
-  finally{for(const input of inputs)input.value=''}
+function renderOpenAI(){renderAccessSummary()}
+function renderOpenAIJobNotice(){
+  const el=$('oa-job-notice');if(!el)return;
+  const plan=openaiState&&openaiState.plan,calls=plan?plan.fallback_calls||0:0;
+  const show=openaiPlanGranted()&&calls>0&&openaiLastFallbackCalls!==null&&calls>openaiLastFallbackCalls;
+  if(show){el.hidden=false;el.textContent=t('תקציב חשבון OpenAI נגמר או שאינו זמין; הקריאות עברו למפתח ה־API ('+calls+' עד כה).','The OpenAI account budget ran out or is unavailable; calls switched to the API key ('+calls+' so far).')}
+  else if(!openaiPlanGranted()||!plan)el.hidden=true;
+}
+async function refreshOpenAI(){
+  openaiFetchedAt=Date.now();
+  try{openaiState=await request('/openai-account')}catch(_){return}
+  if(announceOpenAI())renderKeyFields();
+  if(openaiLastFallbackCalls===null)openaiLastFallbackCalls=(openaiState.plan&&openaiState.plan.fallback_calls)||0;
+  renderOpenAI();renderOpenAIJobNotice();
+  clearTimeout(openaiTimer);
+  if(openaiState.account&&openaiState.account.signed_in)openaiSignInUntil=0;
+  if(openaiSignInUntil>Date.now())openaiTimer=setTimeout(refreshOpenAI,2000);
+  updateSettings();
+}
+async function pollOpenAIDuringJob(){
+  openaiFetchedAt=Date.now();
+  try{openaiState=await request('/openai-account')}catch(_){return}
+  announceOpenAI();
+  renderOpenAI();renderOpenAIJobNotice();
+}
+function missingKeyProviders(){return requiredProviderIds().filter(pid=>!keyProvidersAvailable[pid]&&!openaiCoversProvider(pid))}
+function renderResumeKeyFields(){
+  if(!$('resume-keys'))return;
+  const required=requiredProviderIdsForJobSettings(currentJob&&currentJob.settings);
+  const missing=required.filter(pid=>!keyProvidersAvailable[pid]&&!openaiCoversProvider(pid));
+  $('resume-keys').hidden=!missing.length;
+  $('resume-missing').textContent=missing.length?t('חסר מפתח API עבור: ','Missing API key for: ')+missing.join(', ')+'.':'';
+  $('resume-open-keys').textContent=t('הזנת מפתח…','Enter a key…');
+  if(!missing.length&&$('resume-key-message'))$('resume-key-message').textContent='';
 }
 
 // ---- preview ----
@@ -921,7 +1005,7 @@ async function resumeJob(){
 async function poll(jobId){
   clearTimeout(pollTimer);
   try{const result=await request('/document-job',{job_id:jobId});if(!$('library-panel').hidden)return;currentJob={...result,settings:result.settings||currentJob?.settings};
-    if(['queued','reading','translating','reviewing','rebuilding'].includes(result.status)){show('processing-panel');renderProcessing();pollTimer=setTimeout(()=>poll(jobId),1400)}
+    if(['queued','reading','translating','reviewing','rebuilding'].includes(result.status)){show('processing-panel');renderProcessing();pollOpenAIDuringJob();pollTimer=setTimeout(()=>poll(jobId),1400)}
     else if(['paused','interrupted','failed'].includes(result.status)&&result.settings?.automation){show('processing-panel');renderProcessing()}
     else{setBusy(false);show('result-panel');renderResult();window.scrollTo({top:0,behavior:'smooth'})}
   }catch(error){if(!$('library-panel').hidden)return;if(error.status===400){forget('document-last-job');currentJob=null;setBusy(false);show('start-panel');message(error.message);return}
@@ -1256,10 +1340,10 @@ async function initialize(){
     modelCatalog=config.model_catalog||[];pdfFonts=config.pdf_fonts||[];keyProvidersAvailable=config.key_providers_available||{};
     keyProvidersSaved=config.key_providers_saved||{};keyProvidersExternal=config.key_providers_external||{};keyRememberSupported=!!config.key_remember_supported;
     {let pref=null;try{pref=localStorage.getItem('remember-keys')}catch(_){}setRememberChecked(pref?pref==='1':Object.keys(keyProvidersSaved).length>0)}
-    renderKeyControls();
+    renderKeyControls();refreshOpenAI();
     configuredProviders=config.configured_requirements||[];
     if(modelConfigAvailable){const option=document.createElement('option');option.value='server';option.textContent=t('תצורת המודלים שהוגדרה בשרת',"Model configuration set on the server");$('model').append(option)}
-    populateFontSelects();initRoleUI();renderKeyFields();renderConnection();updateSettings();
+    populateFontSelects();initRoleUI();applyDefaultRoles();renderKeyFields();renderConnection();updateSettings();
   }catch(error){message(error.message)}
   let last;try{last=localStorage.getItem('document-last-job')}catch(_){}
   if(last){setBusy(true);show('processing-panel');currentJob={filename:'המסמך האחרון',placeholder:true,status:'queued',stage_label:'',total_units:0,completed_units:0};renderProcessing();await poll(last)}
@@ -1276,10 +1360,10 @@ $('close-connection').onclick=()=>$('connection-dialog').close();
 $('close-connection-ok').onclick=()=>$('connection-dialog').close();
 $('save-terms').onclick=saveTerms;$('user-terms').oninput=()=>{termsDirty=true;const el=$('terms-status');delete el.dataset.raw;el.textContent=t('לא נשמר',"Not saved")};
 $('sample-button').onclick=sample;$('download-pdf').onclick=download;$('download-notebook').onclick=downloadNotebook;
-$('save-keys').onclick=saveKeys;$('pause-button').onclick=pauseJob;$('resume-button').onclick=resumeJob;$('recheck-button').onclick=recheckReviews;$('cross-review-button').onclick=prepareCrossReview;$('result-cross-review-button').onclick=prepareCrossReviewFromResult;$('suggestions-button').onclick=()=>prepareSuggestions(false);$('result-suggestions-button').onclick=()=>prepareSuggestions(true);
-$('resume-save-keys').onclick=saveResumeKeys;$('forget-keys').onclick=forgetSavedKeys;$('key-indicator').onclick=showKeyDialog;
-$('key-dialog-enter').onclick=enterKeyFromDialog;$('key-dialog-forget').onclick=forgetSavedKeys;$('close-key-dialog').onclick=()=>$('key-dialog').close();
-for(const id of ['remember-keys','resume-remember-keys'])$(id).onchange=event=>{setRememberChecked(event.target.checked);remember('remember-keys',event.target.checked?'1':'0')};
+$('save-keys').onclick=saveKeys;$('access-open-keys').onclick=showKeyDialog;$('access-open-profile').onclick=()=>{const b=document.querySelector('.pf-button');if(b)b.click()};$('pause-button').onclick=pauseJob;$('resume-button').onclick=resumeJob;$('recheck-button').onclick=recheckReviews;$('cross-review-button').onclick=prepareCrossReview;$('result-cross-review-button').onclick=prepareCrossReviewFromResult;$('suggestions-button').onclick=()=>prepareSuggestions(false);$('result-suggestions-button').onclick=()=>prepareSuggestions(true);
+$('resume-open-keys').onclick=showKeyDialog;$('forget-keys').onclick=forgetSavedKeys;$('key-indicator').onclick=showKeyDialog;
+$('close-key-dialog').onclick=()=>$('key-dialog').close();
+for(const id of ['remember-keys'])$(id).onchange=event=>{setRememberChecked(event.target.checked);remember('remember-keys',event.target.checked?'1':'0')};
 $('library-button').onclick=openLibrary;$('library-start-button').onclick=openLibrary;$('library-back').onclick=closeLibrary;
 $('library-tab-done').onclick=()=>setLibraryTab('done');$('library-tab-progress').onclick=()=>setLibraryTab('progress');
 $('font-before').addEventListener('change',schedulePreview);
@@ -1479,7 +1563,7 @@ function setLanguage(next){
   const serverOption=$('model').querySelector('option[value="server"]');
   if(serverOption)serverOption.textContent=t('תצורת המודלים שהוגדרה בשרת','Model configuration set on the server');
   if(pdfFonts.length){populateFontSelects();$('font-before').value=beforeFont;$('font-after').value=afterFont}
-  updateSettings();renderConnection();renderRecent();libraryTexts();
+  updateSettings();renderConnection();renderRecent();libraryTexts();renderOpenAI();
   document.querySelectorAll('.decision-confirm').forEach(b=>b.textContent=t('אישור והמשך','Confirm and continue'));
   if(previewView&&!$('preview-card').hidden)previewView();
   const panel=visiblePanel();
